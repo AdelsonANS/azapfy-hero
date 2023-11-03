@@ -1,22 +1,16 @@
 
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-
+// import DensityLargeIcon from '@mui/icons-material/DensityLarge';
 
 const CardBattle = ({props, invertList}) => {
     console.log('INVERT', props, invertList)
     const {name, images, powerstats } = props;
     const {intelligence, strength, speed, durability, power, combat} = powerstats
 
-    const gainInSkill = (win) => (
-        
-         win ? (
-            <ArrowUpwardIcon/>
-            ) : (
-                <ArrowDownwardIcon/>
-                    )
-           
-    )
+    const gainInSkill = (win) => {
+        return win ? (<ArrowUpwardIcon />) : (<ArrowDownwardIcon />)
+};
 
     return (
         <>

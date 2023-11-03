@@ -21,7 +21,10 @@ const ContainerCombat = () => {
           } else if (first['powerstats'][key] < second['powerstats'][key]) {
             second['powerstats'][key] = { value: second['powerstats'][key], win: true };
             first['powerstats'][key] = { value: first['powerstats'][key], win: false };
-          } 
+          } /* else{
+            second['powerstats'][key] = { value: second['powerstats'][key], win: 'tie' };
+            first['powerstats'][key] = { value: first['powerstats'][key], win: 'tie' };
+          } */
         }
 
         const sumObj1 = Object.values(first.powerstats).reduce((acc, value) => acc + value, 0);
@@ -35,8 +38,6 @@ const ContainerCombat = () => {
             return 'tiebreak';
         }
 } 
-
-    
     return (
         <div >
             <div>
