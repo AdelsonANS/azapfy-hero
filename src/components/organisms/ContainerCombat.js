@@ -1,14 +1,12 @@
 import React from "react";
-import useStore from "./stores/hero";
-//import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import CardBattle from "./communs/CardBattle";
+import useStore from "../../stores/hero";
+import CardBattle from "../molecules/CardBattle";
 const ContainerCombat = () => {
 
     const storeHeros = useStore((state) => state.heros);
 
     let first = storeHeros[0];
     let second = storeHeros[1];
-
 
     function compareHero(){
  
@@ -21,32 +19,30 @@ const ContainerCombat = () => {
           } else if (first['powerstats'][key] < second['powerstats'][key]) {
             second['powerstats'][key] = { value: second['powerstats'][key], win: true };
             first['powerstats'][key] = { value: first['powerstats'][key], win: false };
-          } /* else{
+          } else if (first['powerstats'][key] === second['powerstats'][key]){
             second['powerstats'][key] = { value: second['powerstats'][key], win: 'tie' };
             first['powerstats'][key] = { value: first['powerstats'][key], win: 'tie' };
-          } */
+          }
         }
 
-        const sumObj1 = Object.values(first.powerstats).reduce((acc, value) => acc + value, 0);
-        const sumObj2 = Object.values(second.powerstats).reduce((acc, value) => acc + value, 0);
-
+        const sumObj1 = Object.values(first.powerstats).reduce((acc, {value}) => acc + value, 0);
+        const sumObj2 = Object.values(second.powerstats).reduce((acc, {value}) => acc + value, 0);
+console.log('asdasd',first.powerstats)
         if (sumObj1 > sumObj2) {
             return first.name;
         } else if (sumObj2 > sumObj1) {
             return second.name;
-        } else {
-            return 'tiebreak';
-        }
+        } 
 } 
     return (
-        <div >
+        <div className='text-white '>
             <div>
-               <h1 style={{textAlign: 'center'}}>Winnner {compareHero()}</h1> 
+               <h1 className="font-bold text-center" >Winnner {compareHero()}</h1> 
             </div>
-            <div style={{display: 'flex', justifyContent: 'space-around' , width: '100%'}}>
+            <div className='flex w-full justify-around'>
                 <CardBattle props={first}/>
-                <ul style={{listStyleType: 'none'}}>
-                    <li>intelligence</li>
+                <ul className='text-white flex flex-col my-10 uppercase' style={{listStyleType: 'none'}}>
+                    <li>Intelligence</li>
                     <li>strength</li>
                     <li>speed</li>
                     <li>durability</li>
